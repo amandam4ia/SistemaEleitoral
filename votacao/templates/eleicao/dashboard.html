@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block center %}
+<main class="dashboard">
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>Eleições Disponíveis</h1>
+            <p>Participe das eleições em andamento e acompanhe os resultados</p>
+        </header>
+
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <h3>3</h3>
+                    <p>Eleições Totais</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🗳️</div>
+                <div class="stat-info">
+                    <h3>1</h3>
+                    <p>Eleições Ativas</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <h3>0</h3>
+                    <p>Seus Votos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="elections-grid">
+            <div class="election-card active-election">
+                <div class="election-status">
+                    <span class="status-badge voting">🔴 AO VIVO</span>
+                    <span class="time-remaining">2 dias restantes</span>
+                </div>
+                <div class="election-content">
+                    <h3>Eleição para Presidente do Grêmio</h3>
+                    <p>Escolha o próximo presidente do grêmio estudantil para o mandato 2025-2026. Esta é uma eleição crucial para definir os rumos da representação estudantil.</p>
+                    <div class="election-meta">
+                        <div class="meta-item">
+                            <span class="icon">👥</span>
+                            <span>1.247 eleitores habilitados</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="icon">📅</span>
+                            <span>13 a 15 de Março, 2025</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="icon">📊</span>
+                            <span>813 votos (65% participação)</span>
+                        </div>
+                    </div>
+                    <div class="candidates-preview">
+                        <span>3 candidatos:</span>
+                        <div class="candidates-avatars">
+                            <div class="avatar">A</div>
+                            <div class="avatar">C</div>
+                            <div class="avatar">M</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="election-actions">
+                    <a href="votacao.html" class="btn-primary">Votar Agora</a>
+                    <a href="candidatos.html" class="btn-secondary">Ver Candidatos</a>
+                </div>
+            </div>
+
+            <div class="election-card upcoming-election">
+                <div class="election-status">
+                    <span class="status-badge upcoming">Em Breve</span>
+                    <span class="time-remaining">Inicia em 7 dias</span>
+                </div>
+                <div class="election-content">
+                    <h3>Eleição para Vice-Presidente</h3>
+                    <p>Votação para escolher o vice-presidente que trabalhará junto ao presidente eleito no desenvolvimento de projetos estudantis.</p>
+                    <div class="election-meta">
+                        <div class="meta-item">
+                            <span class="icon">👥</span>
+                            <span>1.247 eleitores</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="icon">📅</span>
+                            <span>20 a 25 de Março, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="election-actions">
+                    <button class="btn-disabled" disabled>Aguardando Início</button>
+                </div>
+            </div>
+
+            <div class="election-card finished-election">
+                <div class="election-status">
+                    <span class="status-badge finished">Finalizada</span>
+                    <span class="time-remaining">Encerrada</span>
+                </div>
+                <div class="election-content">
+                    <h3>Eleição para Diretor de Esportes</h3>
+                    <p>Votação encerrada para escolher o diretor responsável pelas atividades esportivas e competições inter-escolares.</p>
+                    <div class="election-meta">
+                        <div class="meta-item">
+                            <span class="icon">👥</span>
+                            <span>967 votos computados</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="icon">📅</span>
+                            <span>Finalizada em 10/03/2025</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="icon">🏆</span>
+                            <span>Vencedor: Pedro Santos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="election-actions">
+                    <a href="resultados.html" class="btn-secondary">Ver Resultado</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

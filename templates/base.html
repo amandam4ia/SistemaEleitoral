@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Eleição</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-brand">
+                <span class="logo">🏛️</span>
+                <span>Sistema de Eleição</span>
+            </div>
+            <div class="nav-actions">
+                <span class="user-info">Bem-vindo, NOME (Mat: MATRICULA)</span>
+                <a href="index.html" class="btn-secondary">Sair</a>
+            </div>
+        </div>
+    </nav>
+
+    {% block center %}
+
+    {% endblock %}
+
+</body>
+</html>
