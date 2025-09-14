@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+<main class="results">
+    <div class="container">
+        <header class="results-header">
+            <h1>Resultados da Eleição</h1>
+            <h2>Diretor de Esportes</h2>
+            <p>Eleição encerrada em 10 de Março de 2025</p>
+        </header>
+
+        <div class="results-summary">
+            <div class="summary-card">
+                <h3>Participação</h3>
+                <div class="summary-stat">
+                    <span class="big-number">967</span>
+                    <span class="stat-label">votos válidos</span>
+                </div>
+                <div class="summary-detail">
+                    <span>77.6% de participação</span>
+                </div>
+            </div>
+
+            <div class="summary-card winner">
+                <h3>Vencedor</h3>
+                <div class="winner-info">
+                    <div class="winner-photo">
+                        <img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Pedro Santos">
+                    </div>
+                    <div class="winner-details">
+                        <h4>Pedro Santos</h4>
+                        <p>Candidato 25</p>
+                        <span class="winner-percentage">52.3%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-details">
+            <h3>Resultados Detalhados</h3>
+            
+            <div class="result-item winner-result">
+                <div class="candidate-result-info">
+                    <div class="candidate-photo-small">
+                        <img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Pedro Santos">
+                    </div>
+                    <div class="candidate-details">
+                        <h4>Pedro Santos</h4>
+                        <span class="candidate-number">Candidato 25</span>
+                    </div>
+                </div>
+                <div class="result-stats">
+                    <div class="vote-bar">
+                        <div class="vote-progress" style="width: 52.3%"></div>
+                    </div>
+                    <div class="vote-numbers">
+                        <span class="vote-count">506 votos</span>
+                        <span class="vote-percentage">52.3%</span>
+                    </div>
+                </div>
+                <div class="winner-badge">🏆 ELEITO</div>
+            </div>
+
+            <div class="result-item">
+                <div class="candidate-result-info">
+                    <div class="candidate-photo-small">
+                        <img src="https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Laura Oliveira">
+                    </div>
+                    <div class="candidate-details">
+                        <h4>Laura Oliveira</h4>
+                        <span class="candidate-number">Candidata 15</span>
+                    </div>
+                </div>
+                <div class="result-stats">
+                    <div class="vote-bar">
+                        <div class="vote-progress" style="width: 28.7%"></div>
+                    </div>
+                    <div class="vote-numbers">
+                        <span class="vote-count">278 votos</span>
+                        <span class="vote-percentage">28.7%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-item">
+                <div class="candidate-result-info">
+                    <div class="candidate-photo-small">
+                        <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Roberto Lima">
+                    </div>
+                    <div class="candidate-details">
+                        <h4>Roberto Lima</h4>
+                        <span class="candidate-number">Candidato 35</span>
+                    </div>
+                </div>
+                <div class="result-stats">
+                    <div class="vote-bar">
+                        <div class="vote-progress" style="width: 19.0%"></div>
+                    </div>
+                    <div class="vote-numbers">
+                        <span class="vote-count">184 votos</span>
+                        <span class="vote-percentage">19.0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-votes">
+                <div class="other-vote-item">
+                    <span>Votos em Branco</span>
+                    <span>23 votos (2.4%)</span>
+                </div>
+                <div class="other-vote-item">
+                    <span>Votos Nulos</span>
+                    <span>12 votos (1.2%)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="election-info">
+            <h3>Informações da Eleição</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Período de Votação:</span>
+                    <span>8 a 10 de Março, 2025</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Total de Eleitores:</span>
+                    <span>1.247 estudantes</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Votos Computados:</span>
+                    <span>967 votos válidos</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Participação:</span>
+                    <span>77.6%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

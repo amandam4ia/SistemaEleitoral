@@ -60,7 +60,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. **Carregue os dados iniciais de cidades e cursos**
+6. **Carregue os dados iniciais**
 
 ```bash
 python manage.py loaddata dados_iniciais.json

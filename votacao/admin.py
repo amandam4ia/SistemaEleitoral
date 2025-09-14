@@ -8,4 +8,4 @@ class EleicaoAdmin(admin.ModelAdmin):
 
 @admin.register(Chapa)
 class ChapaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'coordenador', 'qtd_votos', 'eleita')
+    list_display = ('nome', 'coordenador')

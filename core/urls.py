@@ -20,5 +20,8 @@ from votacao.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', dashboard, name='dashboard')
+    path('', index, name='index'),
+    path('dashboard/', dashboard, name='dashboard'),
+    path('votar/', votar, name='votar'),
+    path('resultados/', resultados, name='resultados'),
 ]
