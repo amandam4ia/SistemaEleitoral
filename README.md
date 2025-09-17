@@ -4,7 +4,7 @@
 
 ## Sobre o Projeto
 
-
+O sistema é consiste em uma plataforma digital de votação para instituições de ensino, com objetivo de modernizar e tornar o processo eleitoral mais seguro e eficiente. Ele garante que cada aluno tenha acesso único, permitindo apenas um voto por pessoa, sem possibilidade de alterações após o registro. Conta com níveis de acesso (administrador e eleitor), assegura a confidencialidade da escolha do voto, gerencia inscrições de chapas e realiza a apuração automática, fornecendo relatórios confiáveis para a comissão eleitoral.
 
 ## Recursos Utilizados
 
@@ -15,7 +15,8 @@
 
 ## Funcionalidades
 
-
+CRUD de Chapas
+CRUD de Eleição
 
 ## Instalação
 
@@ -60,13 +61,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. **Carregue os dados iniciais**
-
-```bash
-python manage.py loaddata dados_iniciais.json
-```
-
-7. **Inicie o servidor**
+6. **Inicie o servidor**
 
 ```bash
 python manage.py runserver

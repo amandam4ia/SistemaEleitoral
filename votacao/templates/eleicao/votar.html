@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="candidate-actions">
-                    <button class="btn-vote" onclick="vote(10)">Votar em Ana</button>
+                    <button class="btn-vote" onclick="#">Votar em Ana</button>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="candidate-actions">
-                    <button class="btn-vote" onclick="vote(20)">Votar em Carlos</button>
+                    <button class="btn-vote" onclick="#">Votar em Carlos</button>
                 </div>
             </div>
 
@@ -77,65 +77,17 @@
                     </div>
                 </div>
                 <div class="candidate-actions">
-                    <button class="btn-vote" onclick="vote(30)">Votar em Mariana</button>
+                    <button class="btn-vote" onclick="#">Votar em Mariana</button>
                 </div>
             </div>
         </div>
 
         <div class="voting-footer">
             <div class="vote-options">
-                <button class="btn-null" onclick="voteNull()">Voto em Branco</button>
-                <button class="btn-null" onclick="voteInvalid()">Anular Voto</button>
+                <button class="btn-null" onclick="#">Voto em Branco</button>
+                <button class="btn-null" onclick="#">Anular Voto</button>
             </div>
         </div>
     </div>
 </main>
-
-<!-- Modal de Confirmação -->
-<div id="confirmModal" class="modal">
-    <div class="modal-content">
-        <h3>Confirmar Voto</h3>
-        <p id="confirmText">Tem certeza que deseja votar neste candidato?</p>
-        <div class="modal-actions">
-            <button class="btn-secondary" onclick="closeModal()">Cancelar</button>
-            <a href="confirmacao.html" class="btn-primary">Confirmar Voto</a>
-        </div>
-    </div>
-</div>
-
-<script>
-    function vote(candidateNumber) {
-        const modal = document.getElementById('confirmModal');
-        const confirmText = document.getElementById('confirmText');
-        
-        let candidateName = '';
-        switch(candidateNumber) {
-            case 10: candidateName = 'Ana Silva'; break;
-            case 20: candidateName = 'Carlos Mendes'; break;
-            case 30: candidateName = 'Mariana Costa'; break;
-        }
-        
-        confirmText.textContent = `Tem certeza que deseja votar em ${candidateName}?`;
-        modal.style.display = 'flex';
-    }
-
-    function voteNull() {
-        const modal = document.getElementById('confirmModal');
-        const confirmText = document.getElementById('confirmText');
-        confirmText.textContent = 'Tem certeza que deseja votar em branco?';
-        modal.style.display = 'flex';
-    }
-
-    function voteInvalid() {
-        const modal = document.getElementById('confirmModal');
-        const confirmText = document.getElementById('confirmText');
-        confirmText.textContent = 'Tem certeza que deseja anular seu voto?';
-        modal.style.display = 'flex';
-    }
-
-    function closeModal() {
-        document.getElementById('confirmModal').style.display = 'none';
-    }
-</script>
-
 {% endblock %}

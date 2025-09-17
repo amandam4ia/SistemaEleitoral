@@ -32,6 +32,7 @@
             </div>
         </div>
 
+        <!--eleicao ativa com botao para votacao-->
         <div class="elections-grid">
             <div class="election-card active-election">
                 <div class="election-status">
@@ -66,10 +67,10 @@
                 </div>
                 <div class="election-actions">
                     <a href="{% url 'votar' %}" class="btn-primary">Votar Agora</a>
-                    <a href="#" class="btn-secondary">Ver Chapas</a>
                 </div>
             </div>
 
+            <!--eleicao em espera, com botao desabilitado-->
             <div class="election-card upcoming-election">
                 <div class="election-status">
                     <span class="status-badge upcoming">Em Breve</span>
@@ -94,6 +95,7 @@
                 </div>
             </div>
 
+            <!--eleicao finalizada com botao para resultados-->
             <div class="election-card finished-election">
                 <div class="election-status">
                     <span class="status-badge finished">Finalizada</span>
