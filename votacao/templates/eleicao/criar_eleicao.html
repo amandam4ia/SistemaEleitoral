@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block center %}
+<div class="container mt-5">
+    <div class="page-header">
+        <h2>Criar Eleição</h2>
+        <p>Cadastre uma nova eleição com título, descrição e data de término.</p>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Título:</label>
+            {{ form.titulo }}
+        </div>
+
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição:</label>
+            {{ form.descricao }}
+        </div>
+
+        <div class="mb-3">
+            <label for="status" class="form-label">Status:</label>
+            {{ form.status }}
+        </div>
+
+        <div class="mb-3">
+            <label for="data_termino" class="form-label">Data Término:</label>
+            {{ form.data_termino }}
+        </div>
+        <div class="btn-group">
+            <button type="submit" class="btn-primary">Salvar</button>
+            <a href="{% url 'dashboard' %}" class="btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block center %}
+<div class="container mt-5 text-center">
+    <h3>Excluir Eleição</h3>
+    <p>Tem certeza que deseja excluir a eleição <strong>{{ eleicao.titulo }}</strong>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sim, excluir</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

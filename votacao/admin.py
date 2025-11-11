@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Eleicao, Eleitor, Chapa
+from .models import Eleicao, Chapa
 
 # Register your models here.
 @admin.register(Eleicao)

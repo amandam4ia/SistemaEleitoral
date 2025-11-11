@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Sistema de Eleição</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <nav class="navbar">
@@ -15,8 +16,8 @@
                 <span>Sistema de Eleição</span>
             </div>
             <div class="nav-actions">
-                <span class="user-info">Bem-vindo, NOME (Mat: MATRICULA)</span>
-                <a href="{% url 'index' %}" class="btn-secondary">Sair</a>
+                <span class="user-info">Bem-vindo, {{ user.username }}</span>
+                <a href="{% url 'logout' %}" class="btn-secondary">Sair</a>
             </div>
         </div>
     </nav>

@@ -5,124 +5,105 @@
     <div class="container">
         <header class="dashboard-header">
             <h1>Eleições Disponíveis</h1>
-            <p>Participe das eleições em andamento e acompanhe os resultados</p>
+            <p>Participe das eleições em andamento e acompanhe os resultados.</p>
         </header>
 
+        <!-- Estatísticas gerais -->
         <div class="stats-overview">
             <div class="stat-card">
                 <div class="stat-icon">📊</div>
                 <div class="stat-info">
-                    <h3>3</h3>
+                    <h3>{{ total_eleicoes }}</h3>
                     <p>Eleições Totais</p>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">🗳️</div>
                 <div class="stat-info">
-                    <h3>1</h3>
+                    <h3>{{ eleicoes_abertas }}</h3>
                     <p>Eleições Ativas</p>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">✅</div>
                 <div class="stat-info">
-                    <h3>0</h3>
+                    <h3>{{ votos_usuario }}</h3>
                     <p>Seus Votos</p>
                 </div>
             </div>
         </div>
 
-        <!--eleicao ativa com botao para votacao-->
+        {% if user.is_administrador %}
+            <a href="{% url 'criar_eleicao'%}" class="btn-primary" style="margin-bottom: 20px">Adicionar Eleição</a>
+            <a href="{% url 'criar_chapa'%}" class="btn-primary" style="margin-bottom: 20px">Adicionar Chapa</a>
+        {% endif %}
+
+        <!-- Lista de eleições -->
         <div class="elections-grid">
-            <div class="election-card active-election">
-                <div class="election-status">
-                    <span class="status-badge voting">🔴 AO VIVO</span>
-                    <span class="time-remaining">2 dias restantes</span>
-                </div>
-                <div class="election-content">
-                    <h3>Eleição para Presidente do Grêmio</h3>
-                    <p>Escolha o próximo presidente do grêmio estudantil para o mandato 2025-2026. Esta é uma eleição crucial para definir os rumos da representação estudantil.</p>
-                    <div class="election-meta">
-                        <div class="meta-item">
-                            <span class="icon">👥</span>
-                            <span>1.247 eleitores habilitados</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="icon">📅</span>
-                            <span>13 a 15 de Março, 2025</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="icon">📊</span>
-                            <span>813 votos (65% participação)</span>
-                        </div>
+            {% for eleicao in eleicoes %}
+                <div class="election-card 
+                    {% if eleicao.status == 'aberta' %}active-election{% elif eleicao.status == 'encerrada' %}finished-election{% else %}upcoming-election{% endif %}">
+                    
+                    <div class="election-status">
+                        {% if eleicao.status == 'aberta' %}
+                            <span class="status-badge voting">🔴 AO VIVO</span>
+                            <span class="time-remaining">Termina em {{ eleicao.data_termino|date:"d/m/Y H:i" }}</span>
+                        {% elif eleicao.status == 'encerrada' %}
+                            <span class="status-badge finished">Finalizada</span>
+                            <span class="time-remaining">Encerrada</span>
+                        {% elif eleicao.status == 'apurada' %}
+                            <span class="status-badge finished">Apurada</span>
+                            <span class="time-remaining">Encerrada</span>
+                        {% endif %}
+                        {% if user.is_administrador %}
+                            <a href="{% url 'ver_eleicao' eleicao.id %}" class="btn-secondary">Ver Eleição</a>
+                        {% endif %}
                     </div>
-                    <div class="candidates-preview">
-                        <span>3 candidatos:</span>
-                        <div class="candidates-avatars">
-                            <div class="avatar">A</div>
-                            <div class="avatar">C</div>
-                            <div class="avatar">M</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="election-actions">
-                    <a href="{% url 'votar' %}" class="btn-primary">Votar Agora</a>
-                </div>
-            </div>
 
-            <!--eleicao em espera, com botao desabilitado-->
-            <div class="election-card upcoming-election">
-                <div class="election-status">
-                    <span class="status-badge upcoming">Em Breve</span>
-                    <span class="time-remaining">Inicia em 7 dias</span>
-                </div>
-                <div class="election-content">
-                    <h3>Eleição para Vice-Presidente</h3>
-                    <p>Votação para escolher o vice-presidente que trabalhará junto ao presidente eleito no desenvolvimento de projetos estudantis.</p>
-                    <div class="election-meta">
-                        <div class="meta-item">
-                            <span class="icon">👥</span>
-                            <span>1.247 eleitores</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="icon">📅</span>
-                            <span>20 a 25 de Março, 2025</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="election-actions">
-                    <button class="btn-disabled" disabled>Aguardando Início</button>
-                </div>
-            </div>
+                    <div class="election-content">
+                        <h3>{{ eleicao.titulo }}</h3>
+                        <p>{{ eleicao.descricao }}</p>
 
-            <!--eleicao finalizada com botao para resultados-->
-            <div class="election-card finished-election">
-                <div class="election-status">
-                    <span class="status-badge finished">Finalizada</span>
-                    <span class="time-remaining">Encerrada</span>
-                </div>
-                <div class="election-content">
-                    <h3>Eleição para Diretor de Esportes</h3>
-                    <p>Votação encerrada para escolher o diretor responsável pelas atividades esportivas e competições inter-escolares.</p>
-                    <div class="election-meta">
-                        <div class="meta-item">
-                            <span class="icon">👥</span>
-                            <span>967 votos computados</span>
+                        <div class="election-meta">
+                            <div class="meta-item">
+                                <span class="icon">👥</span>
+                                <span>{{ eleicao.contagem_votos }} votos registrados</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="icon">📅</span>
+                                <span>Encerramento: {{ eleicao.data_termino|date:"d/m/Y" }}</span>
+                            </div>
+                            {% if eleicao.vencedor %}
+                            <div class="meta-item">
+                                <span class="icon">🏆</span>
+                                <span>Vencedor: {{ eleicao.vencedor.nome }}</span>
+                            </div>
+                            {% endif %}
                         </div>
-                        <div class="meta-item">
-                            <span class="icon">📅</span>
-                            <span>Finalizada em 10/03/2025</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="icon">🏆</span>
-                            <span>Vencedor: Pedro Santos</span>
+
+                        <div class="candidates-preview">
+                            <span>{{ eleicao.chapas.count }} candidatos:</span>
+                            <div class="candidates-avatars">
+                                {% for chapa in eleicao.chapas.all|slice:":3" %}
+                                    <div class="avatar">{{ chapa.nome|first }}</div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
+
+                    <div class="election-actions">
+                        {% if eleicao.status == 'aberta' %}
+                            <a href="{% url 'votar' eleicao.id %}" class="btn-primary">Votar Agora</a>
+                        {% elif eleicao.status == 'encerrada' or eleicao.status == 'apurada' %}
+                            <a href="{% url 'resultados' eleicao.id %}" class="btn-secondary">Ver Resultado</a>
+                        {% else %}
+                            <button class="btn-disabled" disabled>Aguardando Início</button>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="election-actions">
-                    <a href="{% url 'resultados' %}" class="btn-secondary">Ver Resultado</a>
-                </div>
-            </div>
+            {% empty %}
+                <p class="no-elections">Nenhuma eleição disponível no momento.</p>
+            {% endfor %}
         </div>
     </div>
 </main>

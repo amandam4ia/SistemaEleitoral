@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block center %}
+<div class="container mt-5">
+    <h2>Editar Eleição: {{ eleicao.titulo }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mt-3">Atualizar</button>
+        <a href="{% url 'ver_eleicao' eleicao.id %}" class="btn btn-secondary mt-3">Voltar</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block center %}
+<div class="container mt-5">
+    <div class="page-header">
+        <h2>{{ eleicao.titulo }}</h2>
+        <p>{{ eleicao.descricao }}</p>
+    </div>
+
+    {% if eleicao.status == 'apurada' %}
+        <div class="alert alert-success">
+            🏆 Vencedor: <strong>{{ eleicao.vencedor }}</strong>
+        </div>
+    {% elif eleicao.status == 'encerrada' %}
+        <div class="alert alert-warning">
+            Eleição encerrada — aguardando apuração.
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            Eleição aberta — votos ainda sendo recebidos.
+        </div>
+    {% endif %}
+
+    <div class="list-container">
+        <h4>Chapas concorrentes</h4>
+        <ul>
+            {% for chapa in chapas %}
+            <li>
+                <span>{{ chapa.nome }} — {{ chapa.coordenador }}</span>
+                <div class="actions">
+                    <a href="{% url 'ver_chapa' chapa.id %}" class="btn-secondary">Ver</a>
+                </div>
+            </li>
+            {% empty %}
+            <li>Nenhuma chapa cadastrada.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+        <a href="{% url 'editar_eleicao' eleicao.id %}" class="btn-secondary">Editar</a>
+        <a href="{% url 'deletar_eleicao' eleicao.id %}" class="btn-secondary">Excluir</a>
+
+        {% if eleicao.status == 'aberta' %}
+            <form method="post" action="{% url 'finalizar_eleicao' eleicao.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn-finish">Finalizar Eleição</button>
+            </form>
+        {% endif %}
+
+        <a href="{% url 'dashboard' %}" class="btn-secondary">Voltar</a>
+    </div>
+</div>
+{% endblock %}

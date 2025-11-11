@@ -15,13 +15,32 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from votacao.views import *
+from usuarios.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
+    path('', login_view, name='login'),
     path('dashboard/', dashboard, name='dashboard'),
-    path('votar/', votar, name='votar'),
-    path('resultados/', resultados, name='resultados'),
+    path('votar/<int:eleicao_id>/', votar, name='votar'),
+    path('resultados/<int:eleicao_id>/', resultados_eleicao, name='resultados'),
+    path('usuarios/', include('usuarios.urls')),
+
+    path("eleicao/criar/", criar_eleicao, name="criar_eleicao"),
+    path("eleicao/<int:eleicao_id>/", ver_eleicao, name="ver_eleicao"),
+    path("eleicao/<int:eleicao_id>/editar/", editar_eleicao, name="editar_eleicao"),
+    path("eleicao/<int:eleicao_id>/deletar/", deletar_eleicao, name="deletar_eleicao"),
+
+    path("chapa/criar/", criar_chapa, name="criar_chapa"),
+    path("chapa/<int:chapa_id>/", ver_chapa, name="ver_chapa"),
+    path("chapa/<int:chapa_id>/editar/", editar_chapa, name="editar_chapa"),
+    path("chapa/<int:chapa_id>/deletar/", deletar_chapa, name="deletar_chapa"),
+
+    path('eleicao/finalizar/<int:eleicao_id>/', finalizar_eleicao, name='finalizar_eleicao'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

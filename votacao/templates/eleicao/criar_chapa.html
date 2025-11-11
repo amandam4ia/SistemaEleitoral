@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block center %}
+<div class="container mt-5">
+    <h2>Criar Nova Chapa</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            {{ form.nome }}
+        </div>
+
+        <div class="mb-3">
+            <label for="coordenador" class="form-label">Coordenador:</label>
+            {{ form.coordenador }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição:</label>
+            {{ form.descricao }}
+        </div>
+
+        <div class="mb-3">
+            <label for="eleicao" class="form-label">Eleição:</label>
+            {{ form.eleicao }}
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Salvar</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
