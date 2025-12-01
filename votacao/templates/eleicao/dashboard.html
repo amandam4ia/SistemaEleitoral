@@ -51,12 +51,9 @@
                         {% elif eleicao.status == 'encerrada' %}
                             <span class="status-badge finished">Finalizada</span>
                             <span class="time-remaining">Encerrada</span>
-                        {% elif eleicao.status == 'apurada' %}
-                            <span class="status-badge finished">Apurada</span>
-                            <span class="time-remaining">Encerrada</span>
                         {% endif %}
                         {% if user.is_administrador %}
-                            <a href="{% url 'ver_eleicao' eleicao.id %}" class="btn-secondary">Ver Eleição</a>
+                            <a href="{% url 'ver_eleicao' eleicao.id %}" class="btn btn-success">Ver Eleição</a>
                         {% endif %}
                     </div>
 
@@ -94,8 +91,8 @@
                     <div class="election-actions">
                         {% if eleicao.status == 'aberta' %}
                             <a href="{% url 'votar' eleicao.id %}" class="btn-primary">Votar Agora</a>
-                        {% elif eleicao.status == 'encerrada' or eleicao.status == 'apurada' %}
-                            <a href="{% url 'resultados' eleicao.id %}" class="btn-secondary">Ver Resultado</a>
+                        {% elif eleicao.status == 'encerrada' %}
+                            <a href="{% url 'resultados' eleicao.id %}" class="btn-primary">Ver Resultado</a>
                         {% else %}
                             <button class="btn-disabled" disabled>Aguardando Início</button>
                         {% endif %}

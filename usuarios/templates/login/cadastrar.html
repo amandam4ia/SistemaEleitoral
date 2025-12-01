@@ -1,136 +1,87 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro | Sistema de Eleição</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
 <div class="login-container">
+    <div class="login-card">
 
-        <div class="cadastro-container">
+        <div class="logo-section">
+            <span class="logo">📝</span>
+            <h1>Criar Conta</h1>
+            <p>Preencha os dados abaixo</p>
+        </div>
 
-            <div class="cadastro-header">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
 
-                <i class="bi bi-person-plus-fill"></i>
-                <h2>Cadastro de Usuário</h2>
-                <p class="mb-0">Preencha os dados para criar sua conta</p>
+        <form method="post" class="login-form">
+            {% csrf_token %}
 
-            </div>
-
-            <div class="cadastro-body">
-
-                {% if messages %}
-                    {% for message in messages %}
-
-                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                            {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-
-                    {% endfor %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Usuário</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="text-danger small">{{ form.username.errors }}</div>
                 {% endif %}
-
-                <form method="post">
-                    {% csrf_token %}
-
-                    <!-- Cadastro efetivo de novos usuários -->
-                    <div class="form-section">
-
-                        <h5><i class="bi bi-key"></i> Dados de Acesso</h5>
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-3">
-
-                                <label for="{{ form.username.id_for_label }}" class="form-label required-field">
-                                    Usuário
-                                </label>
-
-                                {{ form.username }}
-                                {% if form.username.errors %}
-
-                                    <div class="text-danger small mt-1">{{ form.username.errors }}</div>
-
-                                {% endif %}
-
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-
-                                <label for="{{ form.email.id_for_label }}" class="form-label required-field">
-                                    E-mail
-                                </label>
-
-                                {{ form.email }}
-                                {% if form.email.errors %}
-
-                                    <div class="text-danger small mt-1">{{ form.email.errors }}</div>
-
-                                {% endif %}
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-3">
-
-                                <label for="{{ form.password1.id_for_label }}" class="form-label required-field">
-                                    Senha
-                                </label>
-
-                                {{ form.password1 }}
-                                {% if form.password1.errors %}
-
-                                    <div class="text-danger small mt-1">{{ form.password1.errors }}</div>
-
-                                {% endif %}
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-
-                                <label for="{{ form.password2.id_for_label }}" class="form-label required-field">
-                                    Confirmar Senha
-                                </label>
-
-                                {{ form.password2 }}
-                                {% if form.password2.errors %}
-
-                                    <div class="text-danger small mt-1">{{ form.password2.errors }}</div>
-
-                                {% endif %}
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    {% if form.non_field_errors %}
-                        <div class="alert alert-danger">
-                            {{ form.non_field_errors }}
-                        </div>
-                    {% endif %}
-
-                    <div class="d-grid mb-3">
-
-                        <button type="submit" class="btn btn-success btn-cadastrar">
-                            <i class="bi bi-check-circle"></i> Cadastrar
-                        </button>
-
-                    </div>
-
-                    <div class="text-center">
-
-                        <p class="mb-0">Já tem uma conta? 
-                            <a href="{% url 'login' %}" class="link-login">
-                                Faça login aqui
-                            </a>
-                        </p>
-
-                    </div>
-
-                </form>
-
             </div>
 
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">E-mail</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="text-danger small">{{ form.email.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Senha</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="text-danger small">{{ form.password1.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Confirmar Senha</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="text-danger small">{{ form.password2.errors }}</div>
+                {% endif %}
+            </div>
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-warning">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <button type="submit" class="btn-primary">
+                Criar Conta
+            </button>
+        </form>
+
+        <div class="login-footer">
+            <p>
+                Já possui conta?
+                <a href="{% url 'login' %}" class="help-link">
+                    Fazer login
+                </a>
+            </p>
         </div>
 
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html>

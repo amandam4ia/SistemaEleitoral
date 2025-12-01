@@ -1,18 +1,17 @@
 {% extends "base.html" %}
 {% block center %}
 <div class="container mt-5">
-    <div class="page-header">
-        <h2>{{ eleicao.titulo }}</h2>
-        <p>{{ eleicao.descricao }}</p>
+    <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <h2>{{ eleicao.titulo }}</h2>
+            <p>{{ eleicao.descricao }}</p>
+        </div>
+        <a href="{% url 'dashboard' %}" class="btn-secondary">Voltar</a>
     </div>
 
-    {% if eleicao.status == 'apurada' %}
+    {% if eleicao.status == 'encerrada' %}
         <div class="alert alert-success">
             🏆 Vencedor: <strong>{{ eleicao.vencedor }}</strong>
-        </div>
-    {% elif eleicao.status == 'encerrada' %}
-        <div class="alert alert-warning">
-            Eleição encerrada — aguardando apuração.
         </div>
     {% else %}
         <div class="alert alert-info">
@@ -27,7 +26,7 @@
             <li>
                 <span>{{ chapa.nome }} — {{ chapa.coordenador }}</span>
                 <div class="actions">
-                    <a href="{% url 'ver_chapa' chapa.id %}" class="btn-secondary">Ver</a>
+                    <a href="{% url 'ver_chapa' chapa.id %}" class="btn-primary">Ver</a>
                 </div>
             </li>
             {% empty %}
@@ -37,17 +36,16 @@
     </div>
 
     <div class="mt-4 d-flex gap-2">
-        <a href="{% url 'editar_eleicao' eleicao.id %}" class="btn-secondary">Editar</a>
-        <a href="{% url 'deletar_eleicao' eleicao.id %}" class="btn-secondary">Excluir</a>
+        <a href="{% url 'editar_eleicao' eleicao.id %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'deletar_eleicao' eleicao.id %}" class="btn btn-danger" style="margin: 0 5px 0 5px">Excluir</a>
 
         {% if eleicao.status == 'aberta' %}
             <form method="post" action="{% url 'finalizar_eleicao' eleicao.id %}" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit" class="btn-finish">Finalizar Eleição</button>
+                <button type="submit" class="btn btn-finish">Finalizar Eleição</button>
             </form>
         {% endif %}
 
-        <a href="{% url 'dashboard' %}" class="btn-secondary">Voltar</a>
     </div>
 </div>
 {% endblock %}

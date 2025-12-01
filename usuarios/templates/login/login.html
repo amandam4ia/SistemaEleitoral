@@ -1,78 +1,63 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Sistema de Eleição</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
 <div class="login-container">
     <div class="login-card">
+
         <div class="logo-section">
-            <div class="logo">🏛️</div>
+            <span class="logo">🏛️</span>
             <h1>Sistema de Eleição</h1>
             <p>Grêmio Estudantil 2025</p>
         </div>
-        
-        <form method="post">
-        {% csrf_token %}
-        
-        <div class="mb-3">
 
-            <label for="{{ form.username.id_for_label }}" class="form-label">
-                <i class="bi bi-person"></i> Usuário
-            </label>
+        <form method="post" class="login-form">
+            {% csrf_token %}
 
-            {{ form.username }}
-            {% if form.username.errors %}
-
-                <div class="text-danger small mt-1">
-                    {{ form.username.errors }}
-                </div>
-
-            {% endif %}
-
-        </div>
-
-        <div class="mb-3">
-
-            <label for="{{ form.password.id_for_label }}" class="form-label">
-                <i class="bi bi-lock"></i> Senha
-            </label>
-
-            {{ form.password }}
-            {% if form.password.errors %}
-
-                <div class="text-danger small mt-1">
-                    {{ form.password.errors }}
-                </div>
-
-            {% endif %}
-
-        </div>
-
-        {% if form.non_field_errors %}
-
-            <div class="alert alert-danger">
-                {{ form.non_field_errors }}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Usuário</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="text-danger small">{{ form.username.errors }}</div>
+                {% endif %}
             </div>
 
-        {% endif %}
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Senha</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="text-danger small">{{ form.password.errors }}</div>
+                {% endif %}
+            </div>
 
-        <div class="d-grid mb-3">
+            {% if form.non_field_errors %}
+                <div class="alert alert-warning">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
 
-            <button type="submit" class="btn btn-success btn-login">
-                <i class="bi bi-box-arrow-in-right"></i> Entrar
+            <button type="submit" class="btn-primary">
+                Entrar
             </button>
+        </form>
 
-        </div>
-
-        <div class="text-center">
-
-            <p class="mb-0">Não tem uma conta? 
-
-                <a href="{% url 'cadastrar_usuario' %}" class="link-cadastro">
-                    Cadastre-se aqui
+        <div class="login-footer">
+            <p>
+                Não tem uma conta?
+                <a href="{% url 'cadastrar_usuario' %}" class="help-link">
+                    Cadastre-se
                 </a>
-
             </p>
-
         </div>
 
-    </form>
     </div>
 </div>
+
+</body>
+</html>

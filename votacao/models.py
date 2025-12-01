@@ -7,7 +7,6 @@ class Eleicao(models.Model):
     STATUS_CHOICES = [
         ('aberta', 'Aberta'),
         ('encerrada', 'Encerrada'),
-        ('apurada', 'Apurada'),
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='aberta')
     titulo = models.CharField(max_length=50)
@@ -53,7 +52,7 @@ class Eleicao(models.Model):
             chapa_id = resultado[0]['chapa']
             from .models import Chapa
             self.vencedor = Chapa.objects.get(pk=chapa_id)
-            self.status = 'apurada'
+            self.status = 'encerrada'
             self.save()
             return self.vencedor
         return None

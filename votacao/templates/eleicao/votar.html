@@ -19,7 +19,6 @@
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ chapa.nome }}</h5>
-                    <p class="card-text">Número: {{ chapa.numero }}</p>
                     <p>{{ chapa.descricao }}</p>
                     <form method="POST">
                         {% csrf_token %}
