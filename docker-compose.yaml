@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    command: ./start
+    volumes:
+      - media_volume:/app/media
+      - static_volume:/app/staticfiles
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    restart: always
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/nginx/Dockerfile
+    volumes:
+      - media_volume:/app/media
+      - static_volume:/app/staticfiles
+    ports:
+      - 98:80
+    restart: unless-stopped  
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
